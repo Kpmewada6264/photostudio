@@ -64,55 +64,83 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'success') {
 </section>
 
 <!-- About Studio Section -->
-<section class="py-5 bg-light">
+<section class="py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: relative; overflow: hidden;">
+    <!-- Background Pattern -->
+    <div class="studio-bg-pattern">
+        <div class="studio-pattern-element" style="position: absolute; top: 15%; left: 8%; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: studioFloat 6s ease-in-out infinite;"></div>
+        <div class="studio-pattern-element" style="position: absolute; top: 60%; right: 5%; width: 120px; height: 120px; background: rgba(255,255,255,0.08); border-radius: 50%; animation: studioFloat 8s ease-in-out infinite reverse;"></div>
+        <div class="studio-pattern-element" style="position: absolute; bottom: 25%; left: 12%; width: 80px; height: 80px; background: rgba(255,255,255,0.12); border-radius: 50%; animation: studioFloat 7s ease-in-out infinite;"></div>
+        <div class="studio-pattern-element" style="position: absolute; top: 35%; right: 20%; width: 90px; height: 90px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: studioFloat 5s ease-in-out infinite reverse;"></div>
+    </div>
+    
     <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold text-white mb-3">Welcome to Sanjay PhotoStudio</h2>
+            <p class="lead text-white mb-3">Your trusted partner for professional photography</p>
+            <div class="divider mx-auto" style="width: 80px; height: 4px; background: linear-gradient(90deg, #ffd700, #ffed4e); border-radius: 2px;"></div>
+        </div>
+        
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4">
-                <img src="assets/images/Gemini_Generated_Image_y65o2ry65o2ry65o.png" alt="Sanjay PhotoStudio" class="img-fluid rounded shadow" style="height: calc(100% + 100px); width: auto; object-fit: cover; border: 3px solid #007bff;">
+                <div class="studio-image-wrapper">
+                    <img src="assets/images/studio.jpg.png" alt="Sanjay PhotoStudio" class="img-fluid rounded shadow" style="height: calc(40% + 20px); width: auto; object-fit: cover; border: 3px solid rgba(255,255,255,0.3);">
+                    <div class="image-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-camera fa-3x text-white"></i>
+                            <p class="mt-2 text-white">Professional Studio</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-6 mb-4">
-                <h2 class="display-5 fw-bold mb-4">Welcome to Sanjay PhotoStudio</h2>
-                <p class="lead mb-4">With over 15 years of experience in professional photography, we specialize in capturing life's most precious moments with artistic vision and technical excellence.</p>
-                <p class="mb-4">Our team of award-winning photographers combines creative talent with state-of-the-art equipment to deliver stunning images that exceed your expectations.</p>
+                <p class="lead text-white mb-4">With over 15 years of experience in professional photography, we specialize in capturing life's most precious moments with artistic vision and technical excellence.</p>
+                <p class="text-white mb-4">Our team of award-winning photographers combines creative talent with state-of-the-art equipment to deliver stunning images that exceed your expectations.</p>
                 <div class="row">
                     <div class="col-6">
                         <div class="d-flex align-items-center mb-3">
-                            <i class="fas fa-award text-primary fs-4 me-3"></i>
+                            <div class="icon-box">
+                                <i class="fas fa-award text-white fs-4"></i>
+                            </div>
                             <div>
-                                <h5 class="mb-0">Award Winning</h5>
-                                <small class="text-muted">Multiple photography awards</small>
+                                <h5 class="mb-0 text-white fw-bold">Award Winning</h5>
+                                <small class="text-white-50">Multiple photography awards</small>
                             </div>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="d-flex align-items-center mb-3">
-                            <i class="fas fa-users text-primary fs-4 me-3"></i>
+                            <div class="icon-box">
+                                <i class="fas fa-users text-white fs-4"></i>
+                            </div>
                             <div>
-                                <h5 class="mb-0">5000+ Clients</h5>
-                                <small class="text-muted">Happy customers worldwide</small>
+                                <h5 class="mb-0 text-white fw-bold">5000+ Clients</h5>
+                                <small class="text-white-50">Happy customers worldwide</small>
                             </div>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="d-flex align-items-center mb-3">
-                            <i class="fas fa-camera text-primary fs-4 me-3"></i>
+                            <div class="icon-box">
+                                <i class="fas fa-user-tie text-white fs-4"></i>
+                            </div>
                             <div>
-                                <h5 class="mb-0">Expert Team</h5>
-                                <small class="text-muted">Professional photographers</small>
+                                <h5 class="mb-0 text-white fw-bold">Expert Team</h5>
+                                <small class="text-white-50">Professional photographers</small>
                             </div>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="d-flex align-items-center mb-3">
-                            <i class="fas fa-heart text-primary fs-4 me-3"></i>
+                            <div class="icon-box">
+                                <i class="fas fa-heart text-white fs-4"></i>
+                            </div>
                             <div>
-                                <h5 class="mb-0">Passion</h5>
-                                <small class="text-muted">Dedicated to excellence</small>
+                                <h5 class="mb-0 text-white fw-bold">Passion</h5>
+                                <small class="text-white-50">Dedicated to excellence</small>
                             </div>
                         </div>
                     </div>
                 </div>
-                <a href="about.php" class="btn btn-primary mt-3">Learn More About Us</a>
             </div>
         </div>
     </div>
@@ -121,6 +149,117 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'success') {
 <!-- Services Preview Section -->
 <section class="py-5">
     <style>
+        /* Studio Section Styles */
+        @keyframes studioFloat {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+        
+        .studio-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        .studio-image-wrapper:hover {
+            transform: perspective(1000px) rotateY(5deg) scale(1.05);
+            box-shadow: 0 35px 80px rgba(0, 0, 0, 0.4);
+        }
+        
+        .studio-image-wrapper img {
+            width: 100%;
+            transition: all 0.5s ease;
+            filter: brightness(1);
+        }
+        
+        .studio-image-wrapper:hover img {
+            filter: brightness(0.8);
+            transform: scale(1.1);
+        }
+        
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.5s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .studio-image-wrapper:hover .image-overlay {
+            opacity: 1;
+        }
+        
+        .overlay-content {
+            text-align: center;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .studio-image-wrapper:hover .overlay-content {
+            transform: translateY(0);
+        }
+        
+        .overlay-content i {
+            animation: pulse 2s infinite;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        
+        .overlay-content p {
+            font-weight: 600;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            margin: 0;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+        }
+        
+        .icon-box:hover {
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.5);
+        }
+        
+        .studio-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .studio-content:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
         /* Beautiful Service Card Animations */
         .service-card {
             background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
