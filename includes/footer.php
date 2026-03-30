@@ -8,11 +8,9 @@
                     </h5>
                     <p class="text-light">Professional photography services capturing your precious moments with artistic excellence and technical precision.</p>
                     <div class="social-links">
-                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/share/1HNDTP6Jiu/" target="_blank" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/sanjay.photography.07?igsh=MXcxZ2ZpMHVxMWY3MQ==" target="_blank" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@sanjayphotography.07?si=2WHaH-TBtlZulwJK" target="_blank" class="text-white me-3"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 
