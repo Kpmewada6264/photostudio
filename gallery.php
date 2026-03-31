@@ -14,13 +14,29 @@
 <section class="py-4 bg-light">
     <div class="container">
         <div class="text-center">
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-outline-primary active" data-filter="all">All Photos</button>
-                <button type="button" class="btn btn-outline-primary" data-filter="wedding">Wedding</button>
-                <button type="button" class="btn btn-outline-primary" data-filter="prewedding">PreWedding</button>
-                <button type="button" class="btn btn-outline-primary" data-filter="events">Events</button>
-                <button type="button" class="btn btn-outline-primary" data-filter="portrait">Portrait</button>
-                <button type="button" class="btn btn-outline-primary" data-filter="fashion">Fashion</button>
+            <!-- Desktop View - Button Group -->
+            <div class="btn-group d-none d-lg-flex" role="group">
+                <button type="button" class="btn btn-outline-primary active" data-filter="all" style="background: transparent; border-color: #007bff; padding: 8px 12px; font-size: 14px;">All Photos</button>
+                <button type="button" class="btn btn-outline-primary" data-filter="wedding" style="background: transparent; border-color: #007bff; padding: 8px 12px; font-size: 14px;">Wedding</button>
+                <button type="button" class="btn btn-outline-primary" data-filter="prewedding" style="background: transparent; border-color: #007bff; padding: 8px 12px; font-size: 14px;">PreWedding</button>
+                <button type="button" class="btn btn-outline-primary" data-filter="events" style="background: transparent; border-color: #007bff; padding: 8px 12px; font-size: 14px;">Events</button>
+                <button type="button" class="btn btn-outline-primary" data-filter="portrait" style="background: transparent; border-color: #007bff; padding: 8px 12px; font-size: 14px;">Portrait</button>
+                <button type="button" class="btn btn-outline-primary" data-filter="fashion" style="background: transparent; border-color: #007bff; padding: 8px 12px; font-size: 14px;">Fashion</button>
+            </div>
+            
+            <!-- Mobile View - Dropdown -->
+            <div class="dropdown d-lg-none">
+                <button class="btn btn-primary dropdown-toggle w-100" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent; border: 1px solid #007bff; color: #007bff;">
+                    <i class="fas fa-filter me-2"></i>Filter Photos
+                </button>
+                <ul class="dropdown-menu w-100" aria-labelledby="filterDropdown">
+                    <li><a class="dropdown-item active" href="#" data-filter="all">All Photos</a></li>
+                    <li><a class="dropdown-item" href="#" data-filter="wedding">Wedding</a></li>
+                    <li><a class="dropdown-item" href="#" data-filter="prewedding">PreWedding</a></li>
+                    <li><a class="dropdown-item" href="#" data-filter="events">Events</a></li>
+                    <li><a class="dropdown-item" href="#" data-filter="portrait">Portrait</a></li>
+                    <li><a class="dropdown-item" href="#" data-filter="fashion">Fashion</a></li>
+                </ul>
             </div>
         </div>
     </div>
