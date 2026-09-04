@@ -352,6 +352,7 @@
         <div class="row g-4">
             <?php
             require_once 'includes/db.php';
+            require_once 'includes/image_optimizer.php';
             $sql = "SELECT * FROM services ORDER BY id ASC";
             $result = $conn->query($sql);
             
@@ -360,7 +361,7 @@
                     echo '<div class="col-lg-4 col-md-6">';
                     echo '<div class="service-card-full h-100">';
                     echo '<div class="service-image">';
-                    echo '<img src="assets/images/services/' . htmlspecialchars($service['image']) . '" alt="' . htmlspecialchars($service['title']) . '" class="img-fluid">';
+                    echo '<img src="' . htmlspecialchars(imageSrc('assets/images/services', $service['image'], true)) . '" alt="' . htmlspecialchars($service['title']) . '" class="img-fluid" loading="lazy" decoding="async">';
                     echo '<div class="service-overlay">';
                     echo '<div class="service-price-tag">$' . number_format($service['price'], 2) . '</div>';
                     echo '</div>';

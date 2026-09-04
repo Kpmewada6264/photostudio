@@ -1,5 +1,6 @@
 <?php 
 require_once 'includes/header.php';
+require_once 'includes/image_optimizer.php';
 
 // Display logout success message
 if (isset($_GET['logout']) && $_GET['logout'] == 'success') {
@@ -21,7 +22,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'success') {
         
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/images/perfect.jpg');">
+                <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/images/perfect.webp');">
                     <div class="hero-content">
                         <h1 class="display-3 fw-bold mb-4">Capture Your Perfect Moments</h1>
                         <p class="lead mb-4">Professional photography that tells your story with artistic excellence</p>
@@ -32,7 +33,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'success') {
             </div>
             
             <div class="carousel-item">
-                <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/images/perfect1.jpg');">
+                <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/images/perfect1.webp');">
                     <div class="hero-content">
                         <h1 class="display-3 fw-bold mb-4">Wedding Photography Excellence</h1>
                         <p class="lead mb-4">Making your special day unforgettable with stunning visuals</p>
@@ -43,7 +44,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'success') {
             </div>
             
             <div class="carousel-item">
-                <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/images/perfect3.jpg');">
+                <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/images/perfect3.webp');">
                     <div class="hero-content">
                         <h1 class="display-3 fw-bold mb-4">Professional Studio Experience</h1>
                         <p class="lead mb-4">State-of-the-art equipment and experienced photographers</p>
@@ -83,7 +84,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'success') {
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4">
                 <div class="studio-image-wrapper">
-                    <img src="assets/images/studio.jpg.png" alt="Sanjay PhotoStudio" class="img-fluid rounded shadow" style="height: calc(40% + 20px); width: auto; object-fit: cover; border: 3px solid rgba(255,255,255,0.3);">
+                    <img src="<?php echo htmlspecialchars(imageSrc('assets/images', 'studio.jpg.png')); ?>" alt="Sanjay PhotoStudio" class="img-fluid rounded shadow" loading="lazy" decoding="async" style="height: calc(40% + 20px); width: auto; object-fit: cover; border: 3px solid rgba(255,255,255,0.3);">
                     <div class="image-overlay">
                         <div class="overlay-content">
                             <i class="fas fa-camera fa-3x text-white"></i>
@@ -527,7 +528,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'success') {
                 while($photo = $result->fetch_assoc()) {
                     echo '<div class="col-lg-3 col-md-4 col-6">';
                     echo '<div class="gallery-item">';
-                    echo '<img src="assets/images/gallery/' . htmlspecialchars($photo['image']) . '" alt="' . htmlspecialchars($photo['category']) . '" class="img-fluid">';
+                    echo '<img src="' . htmlspecialchars(imageSrc('assets/images/gallery', $photo['image'], true)) . '" alt="' . htmlspecialchars($photo['category']) . '" class="img-fluid" loading="lazy" decoding="async">';
                     echo '<div class="gallery-overlay">';
                     echo '<div class="gallery-info">';
                     echo '<h5>' . htmlspecialchars($photo['category']) . '</h5>';

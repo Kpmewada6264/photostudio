@@ -289,6 +289,7 @@
         <div class="row g-4" id="gallery-grid">
             <?php
             require_once 'includes/db.php';
+            require_once 'includes/image_optimizer.php';
             $sql = "SELECT * FROM gallery ORDER BY uploaded_at DESC";
             $result = $conn->query($sql);
             
@@ -297,13 +298,15 @@
                     $category = strtolower($photo['category']);
                     echo '<div class="col-lg-4 col-md-6 gallery-item" data-category="' . $category . '">';
                     echo '<div class="gallery-card">';
-                    echo '<img src="assets/images/gallery/' . htmlspecialchars($photo['image']) . '" alt="' . htmlspecialchars($photo['category']) . '" class="img-fluid gallery-image">';
+                    $thumb_src = imageSrc('assets/images/gallery', $photo['image'], true);
+                    $full_src = imageSrc('assets/images/gallery', $photo['image']);
+                    echo '<img src="' . htmlspecialchars($thumb_src) . '" alt="' . htmlspecialchars($photo['category']) . '" class="img-fluid gallery-image" loading="lazy" decoding="async">';
                     echo '<div class="gallery-overlay">';
                     echo '<div class="gallery-content">';
                     echo '<h5>' . htmlspecialchars($photo['category']) . '</h5>';
                     echo '<p class="text-white mb-3">Click to view full size</p>';
                     echo '<div class="gallery-actions">';
-                    echo '<button class="btn btn-light btn-sm me-2" onclick="openLightbox(\'assets/images/gallery/' . htmlspecialchars($photo['image']) . '\')">';
+                    echo '<button class="btn btn-light btn-sm me-2" onclick="openLightbox(\'' . htmlspecialchars($full_src) . '\')">';
                     echo '<i class="fas fa-search-plus"></i> View';
                     echo '</button>';
                     echo '<button class="btn btn-outline-light btn-sm" onclick="shareImage(\'' . htmlspecialchars($photo['image']) . '\')">';
@@ -380,7 +383,7 @@
         <div class="row g-4">
             <div class="col-lg-4 col-md-6">
                 <div class="collection-card">
-                    <div class="collection-image" style="background-image: url('assets/images/gallery/1774365149_wedding.jpg');">
+                    <div class="collection-image" style="background-image: url('<?php echo htmlspecialchars(imageSrc('assets/images/gallery', '1774365149_wedding.jpg')); ?>');">
                         <div class="collection-overlay">
                             <h3>Wedding Collection</h3>
                             <p>Beautiful moments from our wedding photography</p>
@@ -392,7 +395,7 @@
             
             <div class="col-lg-4 col-md-6">
                 <div class="collection-card">
-                    <div class="collection-image" style="background-image: url('assets/images/gallery/1774366298_portrait6.jpg');">
+                    <div class="collection-image" style="background-image: url('<?php echo htmlspecialchars(imageSrc('assets/images/gallery', '1774366298_portrait6.jpg')); ?>');">
                         <div class="collection-overlay">
                             <h3>Portrait Collection</h3>
                             <p>Stunning portrait photography sessions</p>
@@ -404,7 +407,7 @@
             
             <div class="col-lg-4 col-md-6">
                 <div class="collection-card">
-                    <div class="collection-image" style="background-image: url('assets/images/gallery/1774366725_fashion3.jpg');">
+                    <div class="collection-image" style="background-image: url('<?php echo htmlspecialchars(imageSrc('assets/images/gallery', '1774366725_fashion3.jpg')); ?>');">
                         <div class="collection-overlay">
                             <h3>Fashion Collection</h3>
                             <p>High-fashion editorial photography</p>

@@ -1,4 +1,7 @@
-<?php require_once 'includes/header.php'; ?>
+<?php
+require_once 'includes/header.php';
+require_once 'includes/image_optimizer.php';
+?>
 
 <!-- Page Header -->
 <section class="page-header" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/images/about-header.jpg');">
@@ -36,7 +39,7 @@
             </div>
             <div class="col-lg-6 mb-4">
                 <div class="story-image">
-                    <img src="assets/images/studio.jpg.png" alt="Studio History" class="img-fluid rounded shadow">
+                    <img src="<?php echo htmlspecialchars(imageSrc('assets/images', 'studio.jpg.png')); ?>" alt="Studio History" class="img-fluid rounded shadow" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
@@ -102,7 +105,7 @@
         <div class="row align-items-center">
             <div class="col-lg-4 mb-4">
                 <div class="lead-photographer-image">
-                    <img src="assets/images/lead.jpg.png" alt="Lead Photographer" class="img-fluid rounded shadow">
+                    <img src="<?php echo htmlspecialchars(imageSrc('assets/images', 'lead.jpg.png')); ?>" alt="Lead Photographer" class="img-fluid rounded shadow" loading="lazy" decoding="async">
                     <div class="image-overlay">
                         <div class="overlay-content">
                             <i class="fas fa-camera fa-3x text-white"></i>
@@ -161,7 +164,7 @@
                     <div class="row g-4">
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="team-member text-center">
-                                <img src="assets/images/Naveen Shakyawar.jpg.jpeg" alt="Team Member" class="img-fluid rounded-circle mb-3">
+                                <img src="<?php echo htmlspecialchars(imageSrc('assets/images', 'Naveen Shakyawar.jpg.jpeg')); ?>" alt="Team Member" class="img-fluid rounded-circle mb-3" loading="lazy" decoding="async">
                                 <h5>Naveen Shakyawar</h5>
                                 <p class="text-primary">Traditional video</p>
                                 <p>Specializing in wedding and event videography with 8 years of experience.</p>
@@ -174,7 +177,7 @@
                         </div>
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="team-member text-center">
-                                <img src="assets/images/Lalit Shivare.jpg.jpeg" alt="Team Member" class="img-fluid rounded-circle mb-3">
+                                <img src="<?php echo htmlspecialchars(imageSrc('assets/images', 'Lalit Shivare.jpg.jpeg')); ?>" alt="Team Member" class="img-fluid rounded-circle mb-3" loading="lazy" decoding="async">
                                 <h5>Lalit Shivare</h5>
                                 <p class="text-primary">Traditional photo</p>
                                 <p>Expert in traditional photography with a creative eye for detail.</p>
@@ -187,7 +190,7 @@
                         </div>
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="team-member text-center">
-                                <img src="assets/images/Ram mewadi.jpg.jpeg" alt="Team Member" class="img-fluid rounded-circle mb-3">
+                                <img src="<?php echo htmlspecialchars(imageSrc('assets/images', 'Ram mewadi.jpg.jpeg')); ?>" alt="Team Member" class="img-fluid rounded-circle mb-3" loading="lazy" decoding="async">
                                 <h5>Ram mewadi</h5>
                                 <p class="text-primary">Candid</p>
                                 <p>Specializing in candid photography, capturing real emotions and authentic moments naturally.</p>
@@ -206,7 +209,7 @@
                     <div class="row g-4">
                         <div class="col-lg-6 col-md-6 mb-4">
                             <div class="team-member text-center">
-                                <img src="assets/images/Anmol Singh Rajput.jpg.jpeg" alt="Team Member" class="img-fluid rounded-circle mb-3">
+                                <img src="<?php echo htmlspecialchars(imageSrc('assets/images', 'Anmol Singh Rajput.jpg.jpeg')); ?>" alt="Team Member" class="img-fluid rounded-circle mb-3" loading="lazy" decoding="async">
                                 <h5>Anmol Singh Rajput</h5>
                                 <p class="text-primary">Drone Operator</p>
                                 <p>Skilled drone operator capturing stunning aerial visuals with precision and creativity.</p>
@@ -219,7 +222,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 mb-4">
                             <div class="team-member text-center">
-                                <img src="assets/images/Ashutosh Sharma.jpg.jpeg" alt="Team Member" class="img-fluid rounded-circle mb-3">
+                                <img src="<?php echo htmlspecialchars(imageSrc('assets/images', 'Ashutosh Sharma.jpg.jpeg')); ?>" alt="Team Member" class="img-fluid rounded-circle mb-3" loading="lazy" decoding="async">
                                 <h5>Ashutosh Sharma</h5>
                                 <p class="text-primary">Cinematographer</p>
                                 <p>Specializing in cinematic storytelling and visual narrative through expert camera work and lighting.</p>
@@ -569,22 +572,22 @@
         
         <div class="row g-4">
             <div class="col-lg-4 col-md-6">
-                <img src="assets/images/space.jpg" alt="Studio Space" class="img-fluid rounded shadow">
+                <img src="<?php echo htmlspecialchars(imageSrc('assets/images', 'space.jpg')); ?>" alt="Studio Space" class="img-fluid rounded shadow" loading="lazy" decoding="async">
             </div>
             <div class="col-lg-4 col-md-6">
-                <img src="assets/images/equipment.jpg" alt="Studio Equipment" class="img-fluid rounded shadow">
+                <img src="<?php echo htmlspecialchars(imageSrc('assets/images', 'equipment.jpg')); ?>" alt="Studio Equipment" class="img-fluid rounded shadow" loading="lazy" decoding="async">
             </div>
             <div class="col-lg-4 col-md-6">
-                <img src="assets/images/langes.jpg" alt="Studio Lounge" class="img-fluid rounded shadow">
+                <img src="<?php echo htmlspecialchars(imageSrc('assets/images', 'langes.jpg')); ?>" alt="Studio Lounge" class="img-fluid rounded shadow" loading="lazy" decoding="async">
             </div>
             <div class="col-lg-4 col-md-6">
-                <img src="assets/images/lighting.jpg" alt="Studio Lighting" class="img-fluid rounded shadow">
+                <img src="<?php echo htmlspecialchars(imageSrc('assets/images', 'lighting.jpg')); ?>" alt="Studio Lighting" class="img-fluid rounded shadow" loading="lazy" decoding="async">
             </div>
             <div class="col-lg-4 col-md-6">
-                <img src="assets/images/setup.jpg" alt="Studio Setup" class="img-fluid rounded shadow">
+                <img src="<?php echo htmlspecialchars(imageSrc('assets/images', 'setup.jpg')); ?>" alt="Studio Setup" class="img-fluid rounded shadow" loading="lazy" decoding="async">
             </div>
             <div class="col-lg-4 col-md-6">
-                <img src="assets/images/reception.jpg" alt="Studio Reception" class="img-fluid rounded shadow">
+                <img src="<?php echo htmlspecialchars(imageSrc('assets/images', 'reception.jpg')); ?>" alt="Studio Reception" class="img-fluid rounded shadow" loading="lazy" decoding="async">
             </div>
         </div>
     </div>

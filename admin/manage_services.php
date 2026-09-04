@@ -1,6 +1,7 @@
 <?php
 require_once '../includes/header.php';
 require_once '../includes/db.php';
+require_once '../includes/image_optimizer.php';
 
 // Check if user is admin
 if (!isAdmin()) {
@@ -24,13 +25,12 @@ if (isset($_POST['add_service'])) {
         $file_extension = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
         
         if (in_array($file_extension, $allowed_types)) {
-            $file_name = time() . '_' . basename($_FILES['image']['name']);
-            $upload_path = '../assets/images/services/' . $file_name;
+            $upload = storeOptimizedUpload($_FILES['image']['tmp_name'], $_FILES['image']['name'], '../assets/images/services');
             
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $upload_path)) {
-                $image = $file_name;
+            if ($upload['success']) {
+                $image = $upload['file_name'];
             } else {
-                $error_message = "Failed to upload image";
+                $error_message = $upload['error'];
             }
         } else {
             $error_message = "Invalid file type. Allowed types: JPG, PNG, GIF, WebP";
@@ -64,10 +64,7 @@ if (isset($_GET['delete'])) {
     
     if ($service && !empty($service['image'])) {
         // Delete file from server
-        $file_path = '../assets/images/services/' . $service['image'];
-        if (file_exists($file_path)) {
-            unlink($file_path);
-        }
+        deleteImageVariants('../assets/images/services', $service['image']);
     }
     
     // Delete from database
@@ -258,8 +255,8 @@ $active_services_count = count($active_services);
             $success_message = "Service added successfully!";
         } else {
             $error_message = "Failed to add service";
-            if (!empty($image) && file_exists('../assets/images/services/' . $image)) {
-                unlink('../assets/images/services/' . $image);
+            if (!empty($image)) {
+                deleteImageVariants('../assets/images/services', $image);
             }
         }
     }
@@ -279,10 +276,9 @@ if (isset($_POST['update_service'])) {
         $file_extension = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
         
         if (in_array($file_extension, $allowed_types)) {
-            $file_name = time() . '_' . basename($_FILES['image']['name']);
-            $upload_path = '../assets/images/services/' . $file_name;
+            $upload = storeOptimizedUpload($_FILES['image']['tmp_name'], $_FILES['image']['name'], '../assets/images/services');
             
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $upload_path)) {
+            if ($upload['success']) {
                 // Get old image to delete
                 $sql = "SELECT image FROM services WHERE id = ?";
                 $stmt = $conn->prepare($sql);
@@ -291,14 +287,14 @@ if (isset($_POST['update_service'])) {
                 $result = $stmt->get_result();
                 if ($result->num_rows > 0) {
                     $old_service = $result->fetch_assoc();
-                    if (!empty($old_service['image']) && file_exists('../assets/images/services/' . $old_service['image'])) {
-                        unlink('../assets/images/services/' . $old_service['image']);
+                    if (!empty($old_service['image'])) {
+                        deleteImageVariants('../assets/images/services', $old_service['image']);
                     }
                 }
                 
-                $image_update = ", image = '" . $conn->real_escape_string($file_name) . "'";
+                $image_update = ", image = '" . $conn->real_escape_string($upload['file_name']) . "'";
             } else {
-                $error_message = "Failed to upload service image";
+                $error_message = $upload['error'];
             }
         } else {
             $error_message = "Invalid file type. Only JPG, PNG, GIF, and WebP files are allowed.";
@@ -339,8 +335,8 @@ if (isset($_GET['delete'])) {
         
         if ($stmt->execute()) {
             // Delete image file
-            if (!empty($service['image']) && file_exists('../assets/images/services/' . $service['image'])) {
-                unlink('../assets/images/services/' . $service['image']);
+            if (!empty($service['image'])) {
+                deleteImageVariants('../assets/images/services', $service['image']);
             }
             $success_message = "Service deleted successfully!";
         } else {
@@ -454,7 +450,7 @@ if (isset($_GET['edit'])) {
                     <input type="file" class="form-control" id="image" name="image" accept="image/*">
                     <small class="text-muted">
                         <?php if ($editing_service && !empty($editing_service['image'])): ?>
-                            Current image: <a href="../assets/images/services/<?php echo htmlspecialchars($editing_service['image']); ?>" target="_blank">View</a>
+                            Current image: <a href="<?php echo htmlspecialchars(imageSrc('assets/images/services', $editing_service['image'], false, '../')); ?>" target="_blank">View</a>
                         <?php endif; ?>
                         <br>Supported formats: JPG, PNG, GIF, WebP (Max 5MB)
                     </small>
@@ -502,9 +498,11 @@ if (isset($_GET['edit'])) {
                                 <tr>
                                     <td>
                                         <?php if (!empty($service['image'])): ?>
-                                            <img src="../assets/images/services/<?php echo htmlspecialchars($service['image']); ?>" 
+                                            <img src="<?php echo htmlspecialchars(imageSrc('assets/images/services', $service['image'], true, '../')); ?>" 
                                                  alt="<?php echo htmlspecialchars($service['title']); ?>" 
-                                                 class="service-thumbnail">
+                                                 class="service-thumbnail"
+                                                 loading="lazy"
+                                                 decoding="async">
                                         <?php else: ?>
                                             <div class="service-placeholder">
                                                 <i class="fas fa-camera"></i>
