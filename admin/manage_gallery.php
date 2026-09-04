@@ -1,6 +1,7 @@
 <?php
 require_once '../includes/header.php';
 require_once '../includes/db.php';
+require_once '../includes/image_optimizer.php';
 
 // Check if user is admin
 if (!isAdmin()) {
@@ -20,10 +21,10 @@ if (isset($_POST['upload_photo'])) {
         $file_extension = strtolower(pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION));
         
         if (in_array($file_extension, $allowed_types)) {
-            $file_name = time() . '_' . basename($_FILES['photo']['name']);
-            $upload_path = '../assets/images/gallery/' . $file_name;
+            $upload = storeOptimizedUpload($_FILES['photo']['tmp_name'], $_FILES['photo']['name'], '../assets/images/gallery');
             
-            if (move_uploaded_file($_FILES['photo']['tmp_name'], $upload_path)) {
+            if ($upload['success']) {
+                $file_name = $upload['file_name'];
                 $sql = "INSERT INTO gallery (image, category) VALUES (?, ?)";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("ss", $file_name, $category);
@@ -34,7 +35,7 @@ if (isset($_POST['upload_photo'])) {
                     $error_message = "Failed to save photo to database";
                 }
             } else {
-                $error_message = "Failed to upload photo";
+                $error_message = $upload['error'];
             }
         } else {
             $error_message = "Invalid file type. Allowed types: JPG, PNG, GIF, WebP";
@@ -58,10 +59,7 @@ if (isset($_GET['delete'])) {
     
     if ($photo) {
         // Delete file from server
-        $file_path = '../assets/images/gallery/' . $photo['image'];
-        if (file_exists($file_path)) {
-            unlink($file_path);
-        }
+        deleteImageVariants('../assets/images/gallery', $photo['image']);
         
         // Delete from database
         $sql = "DELETE FROM gallery WHERE id = ?";
@@ -883,13 +881,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6">
                             <div class="gallery-item-admin">
                                 <div class="gallery-image-container">
-                                    <img src="../assets/images/gallery/<?php echo htmlspecialchars($photo['image']); ?>" 
+                                    <img src="<?php echo htmlspecialchars(imageSrc('assets/images/gallery', $photo['image'], true, '../')); ?>" 
                                          alt="<?php echo htmlspecialchars($photo['category']); ?>" 
                                          class="img-fluid gallery-thumbnail"
-                                         onclick="viewPhoto('../assets/images/gallery/<?php echo htmlspecialchars($photo['image']); ?>')">
+                                         loading="lazy"
+                                         decoding="async"
+                                         onclick="viewPhoto('<?php echo htmlspecialchars(imageSrc('assets/images/gallery', $photo['image'], false, '../')); ?>')">
                                     <div class="gallery-overlay-admin">
                                         <div class="gallery-actions-admin">
-                                            <button class="btn btn-sm btn-light" onclick="viewPhoto('../assets/images/gallery/<?php echo htmlspecialchars($photo['image']); ?>')">
+                                            <button class="btn btn-sm btn-light" onclick="viewPhoto('<?php echo htmlspecialchars(imageSrc('assets/images/gallery', $photo['image'], false, '../')); ?>')">
                                                 <i class="fas fa-eye"></i>
                                             </button>
                                             <a href="?delete=<?php echo $photo['id']; ?>" 

@@ -219,11 +219,21 @@ Update Google Fonts import in `includes/header.php`
 
 ## 🚀 Performance Optimization
 
-- **Image Optimization** - Compress images before upload
-- **Lazy Loading** - Images load as needed
-- **Minified CSS/JS** - Optimized file sizes
-- **Caching** - Browser caching enabled
+- **Image Optimization** - Uploads are resized to 1600px, converted to WebP (quality 82) and stored with a 400px thumbnail
+- **Lazy Loading** - Gallery and content images use `loading="lazy"` / `decoding="async"`; hero slides load immediately
+- **Thumbnails** - Grids load `thumbnails/*.webp`, full images only open in the lightbox
+- **Caching** - `.htaccess` sets long-lived cache headers for images, CSS and JS
 - **CDN Ready** - External resources use CDN
+
+Existing images can be converted in bulk:
+
+```bash
+php tools/optimize_images.php                       # write .webp + thumbnails next to originals
+php tools/optimize_images.php --delete-originals    # also remove the source JPG/PNG files
+```
+
+Pages resolve image URLs through `imageSrc()` in `includes/image_optimizer.php`, which prefers the WebP
+variant and thumbnail when they exist, so no database change is needed after a bulk conversion.
 
 ## 📊 Admin Features
 
